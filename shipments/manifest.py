@@ -21,32 +21,52 @@ class Manifest(ShipmentComponent):
     def set_carrier_code(self, carrier_code):
         self.carrier = Carrier(carrier_code)
 
+        return self
+
     def set_vessel_name(self, vessel_name):
         self.vessel_name = vessel_name
+
+        return self
 
     def set_port_of_unlading(self, port):
         self.port_of_unlading = port
 
+        return self
+
     def set_foreign_port_of_lading(self, port):
         self.port_of_lading = port
+
+        return self
 
     def set_manifest_quantity(self, quantity):
         self.manifest_quantity = quantity
 
+        return self
+
     def set_manifest_quantity_unit(self, unit):
         self.manifest_quantity_unit = unit
+
+        return self
 
     def set_weigh(self, weight):
         self.weight = weight
 
+        return self
+
     def set_weigh_unit(self, unit):
         self.weight_unit = unit
+
+        return self
 
     def set_measurement(self, measurement):
         self.measurement = measurement
 
+        return self
+
     def set_measurement_unit(self, unit):
         self.measurement_unit = unit
+
+        return self
 
     def get_carrier(self):
         """
