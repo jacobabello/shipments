@@ -1,3 +1,4 @@
+from shipments.cargo import Cargo
 from shipments.shipment_component import ShipmentComponent
 
 
@@ -19,6 +20,8 @@ class Container(ShipmentComponent):
 
     def __init__(self, container_number):
         self.container_number = container_number
+        self.cargoes = {}
+        self.list_of_cargoes = []
 
     def generate_json(self):
         pass
@@ -61,3 +64,28 @@ class Container(ShipmentComponent):
 
     def get_type_of_service(self):
         return self.__type_of_services__[self.type_of_service]
+
+    def add_cargo(self, sequence_number, product_description, piece_count):
+        """
+        :rtype: Cargo
+        """
+        if sequence_number in self.cargoes.keys():
+            raise ValueError('Sequence Number %s is already added' % sequence_number )
+
+        cargo = Cargo(sequence_number, product_description, piece_count)
+        self.cargoes.update({sequence_number: cargo})
+        self.list_of_cargoes.append(cargo)
+
+        return cargo
+
+    def get_cargo_by_sequence_number(self, sequence_number):
+        """
+        :rtype: Cargo
+        """
+        return self.cargoes[sequence_number]
+
+    def get_all_cargoes(self):
+        """
+        @rtype list of Cargo
+        """
+        return self.list_of_cargoes
