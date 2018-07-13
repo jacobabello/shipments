@@ -2,3 +2,4 @@
 tests/.cache/
 .pytest_cache/
 *.pyc
+.idea/
