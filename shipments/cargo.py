@@ -2,10 +2,17 @@ from shipments.shipment_component import ShipmentComponent
 
 
 class Cargo(ShipmentComponent):
+
     def __init__(self, sequence_number, product_description, piece_count):
         self.sequence_number = sequence_number
         self.product_description = product_description
         self.piece_count = piece_count
+
+    def generate_json(self):
+        return {
+            'Product description': self.get_product_description(),
+            'Piece count': self.get_piece_count()
+        }
 
     def get_sequence_number(self):
         return self.sequence_number
