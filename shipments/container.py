@@ -24,7 +24,27 @@ class Container(ShipmentComponent):
         self.list_of_cargoes = []
 
     def generate_json(self):
-        pass
+        json_data = {
+            'Container Number': self.container_number,
+            'Length': self.get_length(),
+            'Height': self.get_height(),
+            'Width': self.get_width(),
+            'Load status': self.get_load_status(),
+            'Type of service': self.get_type_of_service()
+        }
+
+        json_cargoes = []
+
+        if len(self.list_of_cargoes) > 0:
+            for cargo in self.list_of_cargoes:
+                json_cargoes.append({
+                    'Product description': cargo.get_product_description(),
+                    'Piece count': cargo.get_piece_count()
+                })
+
+            json_data.update({'Cargoes': json_cargoes})
+
+        return json_data
 
     def set_length(self, lenght):
         self.lenght = lenght
@@ -75,8 +95,6 @@ class Container(ShipmentComponent):
         cargo = Cargo(sequence_number, product_description, piece_count)
         self.cargoes.update({sequence_number: cargo})
         self.list_of_cargoes.append(cargo)
-
-        return cargo
 
     def get_cargo_by_sequence_number(self, sequence_number):
         """
